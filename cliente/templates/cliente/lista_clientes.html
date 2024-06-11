@@ -1,0 +1,12 @@
+{%extends "./base.html"%}
+
+{% block title %}Página Inicial{% endblock %}
+
+{% block content %}
+<h1>Lista de Clientes</h1>
+<ul>
+    {% for cliente in clientes %}
+        <li><a href="{% url 'detalhe_cliente' cliente.id %}">{{ cliente.nome }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

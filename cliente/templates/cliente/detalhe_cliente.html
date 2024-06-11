@@ -1,0 +1,14 @@
+{% extends "./base.html" %}
+{% block tittle %} Detalhes {% endblock %}
+
+{% block content %}
+    <h1>Detalhes do Cliente: {{ cliente.nome }}</h1>
+    <h2>Compras</h2>
+    <ul>
+        {% for compra in compras %}
+            <li>{{ compra.descricao }} - {{ compra.valor }} - {{ compra.data }}</li>
+        {% endfor %}
+    </ul>
+    <h3>Total: {{ total }}</h3>
+    <a href="{% url 'novo_cliente' %}">Nova Compra</a>
+{% endblock %}
