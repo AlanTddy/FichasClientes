@@ -24,3 +24,16 @@ def novo_cliente(request):
     else:
         form = ClienteForm()
     return render(request, 'cliente/novo_cliente.html', {'form': form})
+
+def nova_compra(request, cliente_id):
+    cliente = get_object_or_404(Cliente, pk=cliente_id)
+    if request.method == 'POST':
+        form = CompraForm(request.POST)
+        if form.is_valid():
+            compra = form.save(commit=False)
+            compra.cliente = cliente
+            compra.save()
+            return redirect('detalhe_cliente', cliente_id = cliente.id)
+    else:
+        form = CompraForm()
+    return render(request, 'cliente/nova_compra.html', {'cliente': cliente, 'form': form })

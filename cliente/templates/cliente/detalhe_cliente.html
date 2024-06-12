@@ -10,5 +10,6 @@
         {% endfor %}
     </ul>
     <h3>Total: {{ total }}</h3>
-    <a href="{% url 'novo_cliente' %}">Nova Compra</a>
+    <a href="{% url 'nova_compra' cliente.id %}" class="btn btn-primary">Nova Compra</a>
+    <a href="{% url 'index' %}" class="btn btn-success">Pagar conta</a>
 {% endblock %}

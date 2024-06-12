@@ -1,0 +1,12 @@
+{% extends "./base.html" %}
+
+{% block tittle %} Nova Compra {% endblock %}
+
+{% block content %}
+    <h1>Cadastrar Nova Compra para {{ cliente.nome }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salvar</button>
+    </form>
+{% endblock %}
