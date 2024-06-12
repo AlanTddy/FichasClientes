@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Cliente, Compra
-from .forms import ClienteForm, CompraForm
+from .models import Cliente, Compra, Historico
+from .forms import ClienteForm, CompraForm, HistoricoForm
 
 def index(request):
     return render(request, 'cliente/index.html')
@@ -37,3 +37,9 @@ def nova_compra(request, cliente_id):
     else:
         form = CompraForm()
     return render(request, 'cliente/nova_compra.html', {'cliente': cliente, 'form': form })
+
+def pagar_conta(valor, valorPago):
+    historico = get_object_or_404(Historico)
+
+        
+

@@ -18,8 +18,8 @@
         />
     </head>
 
-    <body class="d-flex vh-100">
-        <header class="d-flex flex-column p-3 bg-info">
+    <body class="d-flex bd-highlight min-vh-100">
+        <header class="p-2 flex-fill bd-highlight bg-info">
             <h1><a href="{% url 'index' %}" >CADERNETA VIRTUAL</a></h1>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
@@ -44,7 +44,7 @@
             </ul>
         </header>
 
-        <main class="content">
+        <main class="content container mt-4">
             {% block content %}
             {% endblock %}
         </main>

@@ -2,14 +2,54 @@
 {% block tittle %} Detalhes {% endblock %}
 
 {% block content %}
-    <h1>Detalhes do Cliente: {{ cliente.nome }}</h1>
-    <h2>Compras</h2>
-    <ul>
-        {% for compra in compras %}
-            <li>{{ compra.descricao }} - {{ compra.valor }} - {{ compra.data }}</li>
-        {% endfor %}
-    </ul>
-    <h3>Total: {{ total }}</h3>
-    <a href="{% url 'nova_compra' cliente.id %}" class="btn btn-primary">Nova Compra</a>
-    <a href="{% url 'index' %}" class="btn btn-success">Pagar conta</a>
+    <div class="text-center">
+        <h1> Detalhes do Cliente </h1>
+    </br>
+    </div>
+        <table class="table table-borderless border border-secondary">
+            <thead>
+              <tr>
+                <th scope="col">NOME</th>
+                <th scope="col">APELIDO</th>
+                <th scope="col">CPF</th>
+                <th scope="col">OPÇÕES</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> {{ cliente.nome }} </td>
+                    <td> {{ cliente.apelido }} </td>
+                    <td> {{ cliente.cpf }} </td>
+                    <td> 
+                        <a href="{% url 'detalhe_cliente' cliente.id %}" class="btn btn-secondary"> Histórico de Pagamento</a>
+                        <a href="{% url 'detalhe_cliente' cliente.id %}" class="btn btn-danger"> Deletar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Valor</th>
+            <th scope="col">Data</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for compra in compras %}  
+            <tr>
+              <th scope="row">{{ compra.id }}</th>
+              <td>{{ compra.valor }}</td>
+              <td>{{ compra.data }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table> 
+    <footer class="d-flex bd-highlight">
+        <h3 class="p-2 flex-grow-1 bd-highlight">Total: {{ total }}</h3>
+        <a href="{% url 'nova_compra' cliente.id %}" class="btn btn-primary p-3 bd-highlight me-2">Nova Compra</a>
+        <a href="{% url 'index' %}" class="btn btn-success p-3 bd-highlight">Pagar conta</a>
+    </footer>
 {% endblock %}

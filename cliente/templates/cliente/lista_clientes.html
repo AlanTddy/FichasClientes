@@ -3,10 +3,33 @@
 {% block title %}Página Inicial{% endblock %}
 
 {% block content %}
-<h1>Lista de Clientes</h1>
-<ul>
-    {% for cliente in clientes %}
-        <li><a href="{% url 'detalhe_cliente' cliente.id %}">{{ cliente.nome }}</a></li>
-    {% endfor %}
-</ul>
+    <h1>Lista de Clientes</h1>
+
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Apelido</th>
+            <th scope="col">Opções</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for cliente in clientes %}  
+            <div class="d-grid gap-2">
+                <tr>
+                    <th scope="row">{{ cliente.id }}</th>
+                    <td>{{ cliente.nome }}</td>
+                    <td>{{ cliente.apelido }}</td>
+                    <td>
+                        <a href="{% url 'detalhe_cliente' cliente.id %}" class="btn btn-info">Ver</a>
+                        <a href="{% url 'detalhe_cliente' cliente.id %}" class="btn btn-secondary">Editar</a>
+                    </td>
+                </tr>
+            </div>
+            </a>
+            {% endfor %}
+        </tbody>
+    </table> 
 {% endblock %}
