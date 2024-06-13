@@ -1,0 +1,26 @@
+{% extends "./base.html" %}
+{% block tittle %} Detalhes {% endblock %}
+
+{% block content %}
+    <h4> Cliente "{{ cliente.nome }}" - Pagar conta</h4>
+    <form action="{% url 'pagar_conta' cliente.id %}" method="POST">
+        {% csrf_token %}
+        <p>
+            <label for="id_valorPago">
+                Valor:
+            </label>
+            <input id="id_valorPago" type="number" name="valorPago" step="0.01" required="">
+        </p>
+        <button
+            type="submit"
+            class="btn btn-success"
+        >
+            Pagar
+        </button>
+        <a
+            href="{% url 'detalhe_cliente' cliente.id %}" class="btn btn-danger"
+        >
+            Cancelar
+        </a>   
+    </form>
+{% endblock %}

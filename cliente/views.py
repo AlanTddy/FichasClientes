@@ -53,8 +53,18 @@ def remove_compra(request, cliente_id, compra_id):
         return redirect('detalhe_cliente', cliente_id=cliente_id)
     return render(request, 'cliente/remover_compra.html', {'cliente': cliente, 'compra': compra})
 
-def pagar_conta(request, cliente_id, compra_id):
+def remover_todas_compras(request, cliente_id):
+    cliente = get_object_or_404(Cliente, id=cliente_id)
+    compra = Compra.objects.filter(cliente=cliente)
+    if request.method == 'POST':
+        for compras in compra:
+            compras.delete()
+        return redirect('detalhe_cliente', cliente_id=cliente_id)
+    return render(request, 'cliente/pagar_conta.html', {'cliente': cliente, 'compra': compra})
+
+def pagar_conta(request, cliente_id, compra_id, valorPago):
     cliente = get_object_or_404(Cliente, id=cliente_id)
     compras = get_object_or_404(Compra, id=compra_id)
     if request.method == 'POST':
         total = sum(compras.valor for compra in compras)
+        total =- valorPago

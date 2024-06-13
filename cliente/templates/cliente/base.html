@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-br">
+<html lang="pt-br" class="h-100">
     <head>
         <title>{% block tittle %} Caderneta Virtual {% endblock %}</title>
         <!-- Required meta tags -->
@@ -18,10 +18,10 @@
         />
     </head>
 
-    <body class="wrapper d-flex align-items-stretch">
-        <header>
-            <div>
-                <h1 class="info text-center"><a href="{% url 'index' %}" class="link-light">CADERNETA VIRTUAL</a></h1>
+    <body class="d-flex h-100">
+        <header class="d-flex flex-column align-items-stretch flex-shrink-0 p-3" style="background-color: #084298; max-width:300px">
+            <div class="mb-4">
+                <h1 class="info text-center"><a href="{% url 'index' %}" class="link-light link-underline-opacity-0">CADERNETA VIRTUAL</a></h1>
             </div>
             <ul class="list-unstyled components mb-5">
                 <li class="active">
@@ -48,7 +48,7 @@
             </ul>
         </header>
 
-        <main class="content container mt-4">
+        <main class="flex-grow-1 p-4 d-flex flex-column">
             {% block content %}
             {% endblock %}
         </main>

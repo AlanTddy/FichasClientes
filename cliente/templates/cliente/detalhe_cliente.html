@@ -65,6 +65,6 @@
     <footer class="d-flex bd-highlight mt-5 p-2 bg-light">
         <h3 class="p-2 flex-grow-1 bd-highlight">Total: {{ total }}</h3>
         <a href="{% url 'nova_compra' cliente.id %}" class="btn btn-primary p-3 bd-highlight me-2">Nova Compra</a>
-        <a href="{% url 'index' %}" class="btn btn-success p-3 bd-highlight">Pagar conta</a>
+        <a href="{% url 'pagar_conta' cliente.id%}" class="btn btn-success p-3 bd-highlight">Pagar conta</a>
     </footer>
 {% endblock %}

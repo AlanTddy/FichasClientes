@@ -11,7 +11,6 @@ class CompraForm(forms.ModelForm):
         model = Compra
         fields = ['valor']
 
-
 class HistoricoForm(forms.ModelForm):
     class Meta:
         model = Historico

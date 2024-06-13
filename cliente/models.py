@@ -17,6 +17,7 @@ class Compra(models.Model):
         return {self.valor}
     
 class Historico(models.Model):
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     valorTotal = models.DecimalField(max_digits=10, decimal_places=2)
     totalPago = models.DecimalField(max_digits=10, decimal_places=2)
     dataPagamento = models.DateField(auto_now_add=True)

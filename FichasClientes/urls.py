@@ -9,4 +9,5 @@ urlpatterns = [
     path('cliente/<int:cliente_id>/nova_compra/', views.nova_compra, name='nova_compra'),
     path('cliente/remover/<int:cliente_id>', views.remove_cliente, name= 'remover_cliente'),
     path('cliente/<int:cliente_id>/remover_compra/<int:compra_id>/', views.remove_compra, name='remover_compra'),
+    path('cliente/<int:cliente_id>/pagar_conta', views.remover_todas_compras, name='pagar_conta'),
 ]
