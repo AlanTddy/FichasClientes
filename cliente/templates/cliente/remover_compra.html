@@ -1,0 +1,20 @@
+{% extends "./base.html" %}
+{% block tittle %} Detalhes {% endblock %}
+
+{% block content %}
+    <h4> Deseja mesmo deletar esta compra? "{{ compra.valor }}" </h4>
+    <form action="{% url 'remover_compra' cliente.id compra.id %}" method="POST">
+        {% csrf_token %}
+        <button
+            type="submit"
+            class="btn btn-primary"
+        >
+            Sim
+        </button>
+        <a
+            href="{% url 'detalhe_cliente' cliente.id %}" class="btn btn-danger"
+        >
+            Cancelar
+        </a>   
+    </form>
+{% endblock %}

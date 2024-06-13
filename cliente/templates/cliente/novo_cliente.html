@@ -3,7 +3,10 @@
 {% block tittle %} Novo  Cliente {% endblock %}
 
 {% block content %}
-    <h1>Cadastrar Novo Cliente</h1>
+    <div class="text-center">
+        <h1>Cadastrar Novo Cliente</h1>
+        </br>
+    </div>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}

@@ -3,16 +3,17 @@
 {% block title %}Página Inicial{% endblock %}
 
 {% block content %}
-    <h1>Lista de Clientes</h1>
-
-
+    <div class="text-center">
+        <h1>Lista de Clientes</h1>
+    </br>
+    </div>
     <table class="table">
         <thead>
           <tr>
             <th scope="col">#</th>
             <th scope="col">Nome</th>
             <th scope="col">Apelido</th>
-            <th scope="col">Opções</th>
+            <th scope="col" class="text-end">Opções</th>
           </tr>
         </thead>
         <tbody>
@@ -22,7 +23,7 @@
                     <th scope="row">{{ cliente.id }}</th>
                     <td>{{ cliente.nome }}</td>
                     <td>{{ cliente.apelido }}</td>
-                    <td>
+                    <td class="text-end">
                         <a href="{% url 'detalhe_cliente' cliente.id %}" class="btn btn-info">Ver</a>
                         <a href="{% url 'detalhe_cliente' cliente.id %}" class="btn btn-secondary">Editar</a>
                     </td>

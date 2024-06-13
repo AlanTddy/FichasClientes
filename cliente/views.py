@@ -38,8 +38,23 @@ def nova_compra(request, cliente_id):
         form = CompraForm()
     return render(request, 'cliente/nova_compra.html', {'cliente': cliente, 'form': form })
 
-def pagar_conta(valor, valorPago):
-    historico = get_object_or_404(Historico)
+def remove_cliente(request, cliente_id):
+    cliente = get_object_or_404(Cliente, id=cliente_id)
+    if request.method == 'POST':
+        cliente.delete()
+        return redirect('lista_clientes')
+    return render(request, 'cliente/remover_cliente.html', {'cliente': cliente})
 
-        
+def remove_compra(request, cliente_id, compra_id):
+    cliente = get_object_or_404(Cliente, id=cliente_id)
+    compra = get_object_or_404(Compra, id=compra_id)
+    if request.method == 'POST':
+        compra.delete()
+        return redirect('detalhe_cliente', cliente_id=cliente_id)
+    return render(request, 'cliente/remover_compra.html', {'cliente': cliente, 'compra': compra})
 
+def pagar_conta(request, cliente_id, compra_id):
+    cliente = get_object_or_404(Cliente, id=cliente_id)
+    compras = get_object_or_404(Compra, id=compra_id)
+    if request.method == 'POST':
+        total = sum(compras.valor for compra in compras)
