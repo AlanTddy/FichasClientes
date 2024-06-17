@@ -76,10 +76,19 @@ def pagar_conta(request, cliente_id):
         if total > valorPago:
             restante = total - valorPago
             remover_todas_compras(cliente_id)
+            Historico.objects.create(cliente=cliente, valorTotal=total, totalPago=valorPago, restante=restante)
             restante_conta(cliente, restante)
         else:
             remover_todas_compras(cliente_id)
+            Historico.objects.create(cliente=cliente, valorTotal=total, totalPago=valorPago, restante=Decimal('0.00'))
 
         return redirect('detalhe_cliente', cliente_id=cliente_id)
     
     return render(request, 'cliente/pagar_conta.html', {'cliente': cliente, 'compras': compras})     
+
+def ver_historico(request, cliente_id):
+    cliente = get_object_or_404(Cliente, pk=cliente_id)
+    historico = Historico.objects.filter(cliente=cliente)
+    return render(request, 'cliente/historico.html', {'cliente': cliente, 'historico': historico})
+
+

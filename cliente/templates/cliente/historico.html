@@ -1,0 +1,35 @@
+{% extends "./base.html" %}
+{% block tittle %} Histórico {% endblock %}
+
+{% block content %}
+    <div class="text-center">
+        <h1> Histórico - {{ cliente.apelido }} </h1>
+    </br>
+    </div>
+    
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Valor Total</th>
+            <th scope="col">Valor Pago</th>
+            <th scope="col">Restante</th>
+            <th scope="col">Data pagamento</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for historicos in historico %}  
+            <tr>
+              <td>{{ historicos.valorTotal }}</td>
+              <td>{{ historicos.totalPago}}</td>
+              <td>{{ historicos.restante}}</td>
+              <td>{{ historicos.dataPagamento}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table> 
+    <footer class="d-flex bd-highlight mt-5 p-2 bg-light">
+        <h3 class="p-2 flex-grow-1 bd-highlight">Total: {{ total }}</h3>
+        <a href="{% url 'nova_compra' cliente.id %}" class="btn btn-primary p-3 bd-highlight me-2">Nova Compra</a>
+        <a href="{% url 'pagar_conta' cliente.id%}" class="btn btn-success p-3 bd-highlight">Pagar conta</a>
+    </footer>
+{% endblock %}

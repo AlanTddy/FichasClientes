@@ -10,4 +10,5 @@ urlpatterns = [
     path('cliente/remover/<int:cliente_id>', views.remove_cliente, name= 'remover_cliente'),
     path('cliente/<int:cliente_id>/remover_compra/<int:compra_id>/', views.remove_compra, name='remover_compra'),
     path('cliente/<int:cliente_id>/pagar_conta', views.pagar_conta, name='pagar_conta'),
+    path('cliente/<int:cliente_id>/historico/', views.ver_historico, name='ver_historico'),
 ]
