@@ -1,0 +1,36 @@
+{% extends "./base.html" %}
+{% block tittle %} Editar {% endblock %}
+
+{% block content %}
+    <h4> Cliente "{{ cliente.nome }}" - Editar</h4>
+    <form action="{% url 'editar_cliente' cliente.id %}" method="POST">
+        {% csrf_token %}
+        <p>
+            <label for="id_nome">
+                Novo nome:
+            </label>
+            <input id="id_nome" type="text" name="name" required"" value="{{cliente.nome}}">
+        </p>
+        <p>
+            <label for="id_apelido">
+                Novo apelido:
+            </label>
+            <input id="id_apelido" type="text" name="apelido" required="" value="{{cliente.apelido}}">
+        </p>
+        <p>
+            <label for="id_cpf">
+                novo cpf:
+            </label>
+            <input id="id_cpf" type="text" name="cpf" required="" value="{{cliente.cpf}}">
+        </p>
+
+        <button type="submit" class="btn btn-success">
+            Confirmar
+        </button>
+        <a
+            href="{% url 'detalhe_cliente' cliente.id %}" class="btn btn-danger"
+        >
+            Cancelar
+        </a>   
+    </form>
+{% endblock %}

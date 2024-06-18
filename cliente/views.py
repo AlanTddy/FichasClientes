@@ -1,14 +1,24 @@
 from decimal import Decimal
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Cliente, Compra, Historico
-from .forms import ClienteForm, CompraForm, HistoricoForm
+from .forms import ClienteForm, CompraForm
+from django.views.generic import ListView
+from django.db.models import Q
 
 def index(request):
     return render(request, 'cliente/index.html')
 
-def lista_clientes(request):
-    clientes = Cliente.objects.all()
-    return render(request, 'cliente/lista_clientes.html', {'clientes': clientes})
+class ListaCLientesView(ListView):
+    model = Cliente
+    template_name = 'cliente/lista_clientes.html'
+    context_object_name = 'clientes'
+    
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        txt_nome = self.request.GET.get('nome')
+        if txt_nome:
+            queryset = queryset.filter(Q(nome__icontains=txt_nome) | Q(apelido__icontains=txt_nome))
+        return queryset
 
 def detalhe_cliente(request, cliente_id):
     cliente = get_object_or_404(Cliente, pk=cliente_id)
@@ -91,4 +101,12 @@ def ver_historico(request, cliente_id):
     historico = Historico.objects.filter(cliente=cliente)
     return render(request, 'cliente/historico.html', {'cliente': cliente, 'historico': historico})
 
-
+def editar_cliente(request, cliente_id):
+    cliente = get_object_or_404(Cliente, pk=cliente_id)
+    if request.method == 'POST':
+        cliente.nome = request.POST.get('name')
+        cliente.apelido = request.POST.get('apelido')
+        cliente.cpf = request.POST.get('cpf')
+        cliente.save()
+        return redirect('detalhe_cliente', cliente_id=cliente_id)
+    return render(request, 'cliente/editar.html', {'cliente': cliente})

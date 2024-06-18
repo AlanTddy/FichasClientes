@@ -1,5 +1,5 @@
 from django import forms
-from .models import Cliente, Compra, Historico
+from .models import Cliente, Compra
 
 class ClienteForm(forms.ModelForm):
     class Meta:
@@ -10,8 +10,3 @@ class CompraForm(forms.ModelForm):
     class Meta:
         model = Compra
         fields = ['valor']
-
-class HistoricoForm(forms.ModelForm):
-    class Meta:
-        model = Historico
-        fields = ['valorTotal', 'totalPago']

@@ -3,7 +3,7 @@
 
 {% block content %}
     <h4> Cliente "{{ cliente.nome }}" - Pagar conta</h4>
-    <h4> {{ total }} </h4>
+    <h3> Total: {{ total }} </h3>
     <form action="{% url 'pagar_conta' cliente.id %}" method="POST">
         {% csrf_token %}
         <p>

@@ -7,6 +7,12 @@
         <h1>Lista de Clientes</h1>
     </br>
     </div>
+    <form action="?" method"GET">
+        <input type="text" name="nome" id="" value="{{ request.GET.nome }}" autocomplete="off">
+        <button type="submit" class="btn btn-success"> BUSCAR </button>
+        <a href="{% url 'lista_clientes'%}" class="btn btn-dark"> Limpar </a>
+    </form>
+    <hr>
     <table class="table">
         <thead>
           <tr>
@@ -25,7 +31,7 @@
                     <td>{{ cliente.apelido }}</td>
                     <td class="text-end">
                         <a href="{% url 'detalhe_cliente' cliente.id %}" class="btn btn-info">Ver</a>
-                        <a href="{% url 'detalhe_cliente' cliente.id %}" class="btn btn-secondary">Editar</a>
+                        <a href="{% url 'editar_cliente' cliente.id %}" class="btn btn-secondary">Editar</a>
                     </td>
                 </tr>
             </div>
