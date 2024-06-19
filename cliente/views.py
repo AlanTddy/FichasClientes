@@ -14,7 +14,7 @@ class ListaCLientesView(ListView):
     context_object_name = 'clientes'
     
     def get_queryset(self):
-        queryset = super().get_queryset()
+        queryset = super().get_queryset().order_by('nome')
         txt_nome = self.request.GET.get('nome')
         if txt_nome:
             queryset = queryset.filter(Q(nome__icontains=txt_nome) | Q(apelido__icontains=txt_nome))
